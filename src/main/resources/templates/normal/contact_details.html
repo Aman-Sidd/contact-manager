@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns="https://thymeleaf.org" th:replace="normal/user_base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>User Dashboard</title>
+</head>
+<body>
+	 <section>
+		 
+		 <div class="card mr-3 ml-3" th:if="${c}">
+			 <div class="card-body">
+				 
+				 <div class="container text-center">
+					 
+					 <img style="width:200px; height:200px;" th:if="${c.image!=null}" class="my_profile_photo" th:src="@{'/img/'+${c.image}}" src="" alt="profile photo" />
+						<img style="width:200px; height:200px;" th:unless="${c.image!=null}" class="my_profile_photo" th:src="@{'/img/default.png'}" src="" alt="" />
+					 
+					 <h3 class="mt-3"> <span th:text="${c.name}"></span> (<span th:text="${c.secondName}"></span>) </h3>
+					 
+					 <table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">#ID</th>
+					      <th scope="col"><span th:text="${c.id}"></span></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">Email</th>
+					      <td><span th:text="${c.email}"></span></td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Phone</th>
+					      <td><span th:text="${c.phone}"></span></td>
+					    </tr>
+					    
+					    <tr>
+					      <th scope="row">Work</th>
+					      <td><span th:text="${c.work}"></span></td>
+					    </tr>
+					    
+					    <tr>
+					      <th scope="row">Description</th>
+					      <td><span th:text="${c.description}"></span></td>
+					    </tr>
+					 
+					  </tbody>
+					</table>
+					
+					<div class="container">
+						      <button class="btn btn-danger btn-sm"><a style="color:white;" th:href="@{'/user/delete/'+${c.id}}">Delete</a></button>
+
+      <button class="btn btn-primary btn-sm"><a style="color:white;" th:href="@{'/user/update-contact/'+${c.id}}">Update</a></button>						
+					</div>
+					 
+				 </div>
+				 
+				 
+			 </div>
+		 </div>
+		 
+		 <h1 th:unless="${c}" class="text-center p-3 bg-danger">You don't have permission to view this contact.</h1>
+		 
+	 </section>
+	 
+	 
+</body>
+</html>

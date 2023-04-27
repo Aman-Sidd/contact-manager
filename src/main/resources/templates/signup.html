@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns="https://thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-2">
+					<div class="my-card  mt-2">
+						<div th:if="${message}" th:classappend="${message.type}" class="alert text-center" role="alert">
+						  	<p th:text="${message.content}"></p>
+						  	
+						</div>
+						<div class="container text-center">
+							
+					<img style="width:11%;" th:src="@{../img/register.png}" src="" alt="" />
+						</div>
+					<h1 class="text-center">Register Here</h1>
+					<form th:action="@{/do_register}" method="post" th:object="${user}">
+						
+						<!-- Input for Name -->
+						
+					  <div class="form-group">
+					    <label for="name_field">Enter Your Name</label>
+					    <input 
+					    name="name"
+					    type="text" 
+					    th:classappend="${#fields.hasErrors('name')}?'is-invalid':''"
+					    class="form-control" 
+					    id="name_field" 
+					    aria-describedby="emailHelp" 
+					    placeholder="Your Name"
+					    th:value="${user.name}">
+					    <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+				          
+				        </div>
+					  </div>
+						
+						
+						<!-- Input for Email -->
+						
+					  <div class="form-group">
+					    <label for="name_field">Enter Your Email</label>
+					    <input 
+					    type="email" 
+					    name="email"
+					    class="form-control" 
+					    id="email_field" 
+					    aria-describedby="emailHelp" 
+					    placeholder="Your Email" 
+					    th:value="${user.email}"
+					    required>
+					    
+					  </div>
+					  
+					  <!-- Input for Password -->
+						
+					  <div class="form-group">
+					    <label for="password_field">Enter Your Password</label>
+					    <input 
+					    type="password" 
+					    name="password"
+					    class="form-control" 
+					    id="password_field" 
+					    aria-describedby="emailHelp" 
+					    placeholder="Your Password"
+					    >
+					  </div>
+					  
+					  <!-- Input about Yourself -->
+						
+					  <div class="form-group">
+						  <textarea class="form-control" rows="6"
+						  name="about"
+						  ></textarea>
+					  </div>
+						
+						
+						<div class="form-group form-check text-center">
+							<input name="agreement" type="checkbox" id="agreement" class="form-check-input" />
+							<label for="agreement">Accept terms and conditions.</label>
+							
+						</div>
+						
+						<div class="container text-center">
+							<button type="submit" class="btn bg-primary">Submit</button>
+							<button type="reset" class="btn btn-warning">Reset</button>
+						</div>
+						
+					</form>
+					
+					
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
